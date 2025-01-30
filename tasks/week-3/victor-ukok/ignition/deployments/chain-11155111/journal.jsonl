@@ -1,0 +1,3 @@
+
+{"chainId":11155111,"type":"DEPLOYMENT_INITIALIZE"}
+{"artifactId":"BallotModule#Ballot","constructorArgs":[["Victor","Peter"]],"contractName":"Ballot","dependencies":[],"from":"0x8185d3932a3a9ddf544fbbd247f2290cc2811052","futureId":"BallotModule#Ballot","futureType":"NAMED_ARTIFACT_CONTRACT_DEPLOYMENT","libraries":{},"strategy":"basic","strategyConfig":{},"type":"DEPLOYMENT_EXECUTION_STATE_INITIALIZE","value":{"_kind":"bigint","value":"0"}}
