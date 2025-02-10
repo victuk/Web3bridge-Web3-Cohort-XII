@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.26;
 
 // Uncomment this line to use console.log
 // import "hardhat/console.sol";
@@ -43,8 +43,8 @@ contract SchoolManagementSystem {
     }
 
     enum Gender {
-        Student,
-        Teacher
+        Male,
+        Female
     }
 
     struct UserStruct {
@@ -93,6 +93,30 @@ contract SchoolManagementSystem {
         _;
     }
 
+    function addUser(
+        string memory _fullName,
+        uint16 _age,
+        Gender _gender,
+        string[] memory _subjects,
+        UserTypes _userType,
+        address _userAddress
+    ) external {
+        require(bytes(_fullName).length > 0, "Full name should not be empty");
+        require(_age > 0, "Age must be greater than 0");
+        require(
+            _subjects.length <= 5 && _subjects.length > 0,
+            "Subjects must be between 1 and 5"
+        );
+        users[_userAddress] = UserStruct({
+            fullName: _fullName,
+            age: _age,
+            gender: _gender,
+            subjects: _subjects,
+            userType: _userType,
+            suspended: false
+        });
+    }
+
     function getStudent(
         address _studentAddress
     ) public view returns (UserStruct memory) {
@@ -127,7 +151,7 @@ contract SchoolManagementSystem {
     }
 
     function payFee(StudentClass _studentClass) external payable {
-        require(msg.value == 10, "You are to send 10 Eth");
+        require(msg.value == 10, "You are to send 10 Wei");
         studentFeePaid[msg.sender][_studentClass] =
             studentFeePaid[msg.sender][_studentClass] +
             msg.value;
